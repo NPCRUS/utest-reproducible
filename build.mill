@@ -1,0 +1,17 @@
+import mill._
+import mill.scalalib._
+
+object backend extends ScalaModule {
+  def scalaVersion = "3.5.2"
+
+  object test extends ScalaTests with TestModule.Utest {
+    def testFramework = "utils.CustomFramework"
+
+    def ivyDeps = Agg(
+      ivy"org.postgresql:postgresql::42.2.8",
+      ivy"com.lihaoyi::scalasql:0.1.11",
+      ivy"com.lihaoyi::utest:0.8.4",
+      ivy"org.testcontainers:postgresql:1.20.4"
+    )
+  }
+}
